@@ -1,10 +1,18 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
-import 'package:jubilant_couscous/web/screens/base/web_base_screen.dart';
+import 'package:jubilant_couscous/mobile/app/data/routes/mobile_pages.dart';
+import 'package:jubilant_couscous/mobile/app/data/routes/mobile_routes.dart';
+import 'package:jubilant_couscous/mobile/app/data/ui/screens/base/mobile_base_screen.dart';
+import 'package:jubilant_couscous/web/app/data/routes/web_pages.dart';
+import 'package:jubilant_couscous/web/app/data/routes/web_routes.dart';
+import 'package:jubilant_couscous/web/app/data/ui/screens/base/web_base_screen.dart';
 
-import 'mobile/screens/base/mobile_base_screen.dart';
-
+final ThemeData darkTheme = ThemeData(
+  iconTheme: const IconThemeData(color: Colors.white),
+  backgroundColor: Colors.black,
+  appBarTheme: const AppBarTheme(color: Colors.black),
+  primaryColor: Colors.white,
+);
 void main() {
   runApp(const MyApp());
 }
@@ -14,19 +22,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'GetX project',
-      initialRoute: "/base",
-      getPages: [
-        if (kIsWeb)
-          GetPage(name: "/base", page: () => const WebBaseScreen(),)
-        else
-          GetPage(name: "/base", page: () => const MobileBaseScreen())
-      ],
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: kIsWeb ? const WebBaseScreen() : const MobileBaseScreen(),
+    return MaterialApp(
+      title: 'Jubilant couscous project',
+      debugShowCheckedModeBanner: false,
+      initialRoute: kIsWeb ? WebRoutes.base : MobileRoutes.base,
+      onGenerateRoute: kIsWeb
+          ? (settings) => WebPages.routes(settings)
+          : (settings) => MobilePages.route(settings),
+      useInheritedMediaQuery: true,
+      darkTheme: darkTheme,
     );
   }
 }
