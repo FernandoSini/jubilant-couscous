@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:jubilant_couscous/main.dart';
 import 'package:jubilant_couscous/mobile/app/data/routes/mobile_pages.dart';
 import 'package:jubilant_couscous/mobile/app/data/routes/mobile_routes.dart';
-import 'package:jubilant_couscous/mobile/app/data/ui/screens/home/home.dart';
+import 'package:jubilant_couscous/mobile/app/data/ui/screens/home/mobile_home_screen.dart';
 
 class MobileBaseScreen extends StatefulWidget {
   const MobileBaseScreen({Key? key}) : super(key: key);

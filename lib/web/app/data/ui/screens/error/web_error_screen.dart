@@ -10,6 +10,13 @@ class WebErrorScreen extends StatefulWidget {
 class _WebErrorScreenState extends State<WebErrorScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    var screenSize = MediaQuery.of(context).size;
+    return Scaffold(
+      appBar: AppBar(),
+      body: SizedBox(
+        height: screenSize.height,
+        width: screenSize.width,
+      ),
+    );
   }
 }

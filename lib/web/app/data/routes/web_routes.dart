@@ -1,8 +1,8 @@
-abstract class WebRoutes {
-  static const base = "/base";
-  static const homeAlternative = "/";
-  static const home = "/home";
-  static const login = "/login";
-  static const profile = "/profile";
-  static const error = "/error";
+class WebRoutes {
+  static const String base = "/base";
+  static const String home = "/home";
+  static const String login = "/login";
+  static const String profile = "/profile";
+  static const String error = "/error";
+  static const String splash = "/splash";
 }
