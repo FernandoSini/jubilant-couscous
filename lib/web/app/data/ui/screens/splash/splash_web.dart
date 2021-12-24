@@ -13,7 +13,21 @@ class SplashWeb extends StatefulWidget {
   _SplashWebState createState() => _SplashWebState();
 }
 
-class _SplashWebState extends State<SplashWeb> {
+class _SplashWebState extends State<SplashWeb>
+    with SingleTickerProviderStateMixin {
+  late Animation<double> animation;
+  late AnimationController controllerAnimation;
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controllerAnimation.dispose();
+    super.dispose();
+  }
+
   @override
   void didChangeDependencies() {
     if (ModalRoute.of(context)?.settings.arguments != null) {
@@ -31,6 +45,19 @@ class _SplashWebState extends State<SplashWeb> {
       });
     }
     super.didChangeDependencies();
+    controllerAnimation =
+        AnimationController(duration: const Duration(seconds: 5), vsync: this);
+
+    animation = Tween<double>(begin: 0, end: 150).animate(controllerAnimation)
+      ..addListener(() {
+        if (!mounted) return;
+        setState(() {
+          if (animation.status == AnimationStatus.completed) {
+            controllerAnimation.repeat();
+          }
+        });
+      });
+    controllerAnimation.forward();
   }
 
   @override
@@ -44,21 +71,28 @@ class _SplashWebState extends State<SplashWeb> {
           appBar: AppBar(
             elevation: 0,
             backgroundColor: !value
-                ? defaultTheme.backgroundColor
-                : darkTheme.backgroundColor,
+                ? darkTheme.backgroundColor
+                : defaultTheme.backgroundColor,
           ),
           extendBody: true,
           extendBodyBehindAppBar: true,
-          body: CustomPaint(
-            painter: PaintCustom(),
-            child: Container(
-              decoration: BoxDecoration(
-                color: value
-                    ? darkTheme.backgroundColor
-                    : defaultTheme.backgroundColor,
+          body: Container(
+            decoration: BoxDecoration(
+              color: !value
+                  ? darkTheme.backgroundColor
+                  : defaultTheme.backgroundColor,
+            ),
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            alignment: Alignment.center,
+            child: RotationTransition(
+              turns: Tween(begin: 0.0, end: 2.0).animate(CurvedAnimation(
+                  parent: controllerAnimation, curve: Curves.bounceInOut)),
+              child: Image.asset(
+                "./assets/logohayashi.png",
+                height: MediaQuery.of(context).size.height * 0.5,
+                width: MediaQuery.of(context).size.width * 0.5,
               ),
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
             ),
           ),
         );

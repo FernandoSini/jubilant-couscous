@@ -76,43 +76,71 @@ class _WebHomeState extends State<WebHome> {
               onHover: (value) => setState(() {
                 onHoverList[0] = value;
               }),
-              child: Text(
-                "About me",
-                style: TextStyle(
-                    fontSize: 20,
-                    color: onHoverList[0]
-                        ? darkTheme.primaryColor
-                        : defaultTheme.primaryColor),
-              ),
+              child: isDarkModeCached
+                  ? Text(
+                      "About me",
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: onHoverList[0]
+                              ? darkTheme.primaryColor
+                              : defaultTheme.primaryColor),
+                    )
+                  : Text(
+                      "About me",
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: onHoverList[0]
+                              ? darkTheme.primaryColor
+                              : Colors.black),
+                    ),
             ),
             InkWell(
               onTap: () {},
               onHover: (value) => setState(() {
                 onHoverList[1] = value;
               }),
-              child: Text(
-                "Youtube",
-                style: TextStyle(
-                    fontFamily: GoogleFonts.londrinaOutline().fontFamily,
-                    fontSize: 20,
-                    color: onHoverList[1]
-                        ? darkTheme.primaryColor
-                        : defaultTheme.primaryColor),
-              ),
+              child: isDarkModeCached
+                  ? Text(
+                      "Youtube",
+                      style: TextStyle(
+                          fontFamily: GoogleFonts.londrinaOutline().fontFamily,
+                          fontSize: 20,
+                          color: onHoverList[1]
+                              ? darkTheme.primaryColor
+                              : defaultTheme.primaryColor),
+                    )
+                  : Text(
+                      "Youtube",
+                      style: TextStyle(
+                          fontFamily: GoogleFonts.londrinaOutline().fontFamily,
+                          fontSize: 20,
+                          color: onHoverList[1]
+                              ? darkTheme.primaryColor
+                              : Colors.black),
+                    ),
             ),
             InkWell(
               onTap: () {},
               onHover: (value) => setState(() {
                 onHoverList[2] = value;
               }),
-              child: Text(
-                "Lives",
-                style: TextStyle(
-                    fontSize: 20,
-                    color: onHoverList[2]
-                        ? darkTheme.primaryColor
-                        : defaultTheme.primaryColor),
-              ),
+              child: isDarkModeCached
+                  ? Text(
+                      "Lives",
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: onHoverList[2]
+                              ? darkTheme.primaryColor
+                              : defaultTheme.primaryColor),
+                    )
+                  : Text(
+                      "Lives",
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: onHoverList[2]
+                              ? darkTheme.primaryColor
+                              : Colors.black),
+                    ),
             ),
             SizedBox(
               width: 100,
